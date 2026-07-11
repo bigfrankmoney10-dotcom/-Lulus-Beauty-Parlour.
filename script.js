@@ -1,79 +1,90 @@
-// ===============================
-// Lulu's Beauty Parlour
-// script.js
-// ===============================
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        if(target){
-            target.scrollIntoView({
-                behavior: "smooth"
-            });
-        }
-    });
-});
-// Fade in cards while scrolling
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
-        }
-    });
-});
-document.querySelectorAll(".card").forEach(card=>{
-    card.classList.add("hidden");
-    observer.observe(card);
-});
-// Gallery Animation
-document.querySelectorAll(".gallery-grid img").forEach(image=>{
-    image.addEventListener("mouseenter",()=>{
-        image.style.transform="scale(1.05)";
-    });
-    image.addEventListener("mouseleave",()=>{
-        image.style.transform="scale(1)";
-    });
-});
-// Button Animation
-const button = document.querySelector(".btn");
-button.addEventListener("mouseenter",()=>{
-    button.style.transform="scale(1.08)";
-});
-button.addEventListener("mouseleave",()=>{
-    button.style.transform="scale(1)";
-});
-// Navbar Shadow
-window.addEventListener("scroll",()=>{
-    const navbar=document.querySelector(".navbar");
-    if(window.scrollY>60){
-        navbar.style.boxShadow="0 5px 20px rgba(0,0,0,.25)";
-    }else{
-        navbar.style.boxShadow="none";
+function initializeTailwind() {
+    document.documentElement.style.setProperty('--accent', '#d4af77');
+}
+
+// Mobile Menu
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+hamburgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    const icon = hamburgerBtn.querySelector('i');
+    if (mobileMenu.classList.contains('hidden')) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    } else {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
     }
 });
-// Current Year
-const footer=document.querySelector("footer p:last-child");
-footer.innerHTML="© "+new Date().getFullYear()+" Lulu's Beauty Parlour. All Rights Reserved.";
-// Reveal Animation CSS Class
-const style=document.createElement("style");
-style.innerHTML=`
-.hidden{
-opacity:0;
-transform:translateY(50px);
-transition:.8s ease;
+
+function closeMobileMenu() {
+    mobileMenu.classList.add('hidden');
+    const icon = hamburgerBtn.querySelector('i');
+    icon.classList.remove('fa-times');
+    icon.classList.add('fa-bars');
 }
-.show{
-opacity:1;
-transform:translateY(0);
-}
-`;
-document.head.appendChild(style);
-// Welcome Message
-console.log("Welcome to Lulu's Beauty Parlour Website");
-// Loading Animation
-window.addEventListener("load",()=>{
-document.body.style.opacity="1";
+
+// Smooth scroll
+document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
 });
-document.body.style.opacity="0";
-document.body.style.transition="opacity .8s";
+
+// Review Carousel
+let currentReview = 1;
+const totalReviews = 3;
+
+function showReview(n) {
+    for (let i = 1; i <= totalReviews; i++) {
+        const review = document.getElementById(`review-${i}`);
+        if (review) review.classList.add('hidden');
+    }
+    const activeReview = document.getElementById(`review-${n}`);
+    if (activeReview) activeReview.classList.remove('hidden');
+}
+
+function rotateReviews() {
+    currentReview = currentReview % totalReviews + 1;
+    showReview(currentReview);
+}
+setInterval(rotateReviews, 5000);
+
+// Booking Modal
+function showBookingModal() {
+    document.getElementById('booking-modal').classList.remove('hidden');
+    document.getElementById('booking-modal').classList.add('flex');
+}
+
+function hideBookingModal() {
+    const modal = document.getElementById('booking-modal');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+}
+
+function submitBooking(e) {
+    e.preventDefault();
+    const modalContent = document.querySelector('#booking-modal > div');
+    modalContent.innerHTML = `
+        <div class="text-center py-8">
+            <i class="fa-solid fa-check-circle text-6xl text-[#d4af77] mb-4"></i>
+            <h3 class="text-2xl font-semibold mb-2">Thank you!</h3>
+            <p class="text-white/70">We've received your booking request.<br>We'll contact you shortly via WhatsApp or phone.</p>
+            <button onclick="hideBookingModal()" class="mt-6 px-8 py-3 bg-white text-black rounded-2xl font-medium">Close</button>
+        </div>
+    `;
+}
+
+// Init
+function init() {
+    initializeTailwind();
+    showReview(1);
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === "Escape") {
+            const modal = document.getElementById('booking-modal');
+            if (!modal.classList.contains('hidden')) hideBookingModal();
+        }
+    });
+}
+
+window.onload = init;
