@@ -143,7 +143,7 @@
             </h1>
             
             <p class="max-w-md mx-auto text-lg text-white/80 mb-8">
-                Premium protective hairstyles in the heart of Brixton, London.<br>
+                Premium protective hairstyles in Croydon, London.<br>
                 Home visits available across Greater London.
             </p>
 
@@ -186,8 +186,8 @@
     <section class="max-w-5xl mx-auto px-6 py-16">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <div class="uppercase tracking-[3px] text-xs text-[#d4af77] mb-3">EST. 2025 • BRIXTON</div>
-                <h2 class="luxury-font text-5xl leading-none tracking-tighter">Expert Braiding &amp; Beauty<br>in the Heart of London</h2>
+                <div class="uppercase tracking-[3px] text-xs text-[#d4af77] mb-3">EST. 2025 • CROYDON</div>
+                <h2 class="luxury-font text-5xl leading-none tracking-tighter">Expert Braiding &amp; Beauty<br>in Croydon, London</h2>
             </div>
             <div class="text-white/80 text-lg">
                 At Lulu’s Beauty Parlour, we specialize in premium protective hairstyles that celebrate natural hair and cultural elegance. 
@@ -206,7 +206,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Style Cards -->
                 <div class="service-card bg-[#1a1a1a] p-8 rounded-3xl border border-white/10">
                     <div class="mb-6">
                         <img src="https://images.unsplash.com/photo-1594750472317-6e1f3f1f3f3f?w=600" class="rounded-2xl w-full h-56 object-cover" alt="Box Braids">
@@ -260,7 +259,7 @@
         <div class="max-w-md mx-auto">
             <i class="fa-solid fa-home text-4xl text-[#d4af77] mb-4"></i>
             <h2 class="luxury-font text-4xl tracking-tight mb-3">Home Visits Available</h2>
-            <p class="text-white/70">We bring our expertise to your home or event across Greater London. Perfect for parties, weddings, photoshoots or convenience.</p>
+            <p class="text-white/70">We bring our expertise to your home or event around Croydon and Greater London. Perfect for parties, weddings, photoshoots or convenience.</p>
         </div>
     </section>
 
@@ -273,8 +272,8 @@
                     <h2 class="luxury-font text-4xl tracking-tighter leading-none">Lulu’s Beauty Parlour</h2>
                     <div class="mt-6 space-y-4 text-sm">
                         <div>
-                            <div class="font-medium">15 Atlantic Road</div>
-                            <div>Brixton, London SW9 8HX</div>
+                            <div class="font-medium">Croydon, London SE25</div>
+                            <div>Accepting bookings around Croydon</div>
                         </div>
                         <div>
                             <div class="font-medium">Opening Hours</div>
@@ -290,7 +289,7 @@
                 <!-- Google Map -->
                 <div class="md:col-span-3 rounded-3xl overflow-hidden border border-white/10 h-[380px]">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.5!2d-0.113!3d51.46!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c8f0c0c0c1%3A0xabcdef1234567890!2sBrixton%2C%20London!5e0!3m2!1sen!2suk!4v1700000000000" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.8!2d-0.085!3d51.38!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c8f0c0c0c1%3A0xabcdef1234567890!2sCroydon%2C%20London%20SE25!5e0!3m2!1sen!2suk!4v1700000000000" 
                         width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                 </div>
@@ -379,7 +378,7 @@
             </div>
             
             <div class="flex items-center gap-x-5">
-                <a href="https://instagram.com/beautybylulu25" target="_blank" class="hover:text-white"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="https://www.instagram.com/beautybylulu25/" target="_blank" class="hover:text-white"><i class="fa-brands fa-instagram text-xl"></i></a>
                 <a href="https://tiktok.com/@beautybylulu25" target="_blank" class="hover:text-white"><i class="fa-brands fa-tiktok text-xl"></i></a>
                 <a href="https://wa.me/447398018555" target="_blank" class="hover:text-white"><i class="fa-brands fa-whatsapp text-xl"></i></a>
             </div>
@@ -428,12 +427,10 @@
     </div>
 
     <script>
-        // Tailwind script
         function initializeTailwind() {
             document.documentElement.style.setProperty('--accent', '#d4af77');
         }
 
-        // Mobile Menu
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -456,14 +453,10 @@
             icon.classList.add('fa-bars');
         }
 
-        // Smooth scroll for mobile links
         document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                closeMobileMenu();
-            });
+            link.addEventListener('click', () => closeMobileMenu());
         });
 
-        // Review Carousel
         let currentReview = 1;
         const totalReviews = 3;
 
@@ -481,10 +474,8 @@
             showReview(currentReview);
         }
 
-        // Start carousel
         setInterval(rotateReviews, 5000);
 
-        // Booking Modal
         function showBookingModal() {
             document.getElementById('booking-modal').classList.remove('hidden');
             document.getElementById('booking-modal').classList.add('flex');
@@ -509,7 +500,6 @@
             `;
         }
 
-        // Initialize everything
         function init() {
             initializeTailwind();
             showReview(1);
